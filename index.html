@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LetFlex - Your Ultimate Movie Destination</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="javascript.js"></script>
+    
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>LetFlex</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="movies.html">Movies</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Categories</a>
+                        <div class="dropdown-content">
+                            <a href="action.html">Action</a>
+                            <a href="comedy.html">Comedy</a>
+                            <a class="drama" href="drama.html">Drama</a>
+                        </div>
+                    </li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="banner">
+        <video autoplay loop muted>
+            <source src="bg_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="container" id="bannerContent">
+            <h2>Welcome to LetFlex</h2>
+            <p>Your Ultimate Destination for Movies</p>
+        </div>
+    </section>
+
+    <section id="movies">
+        <h2 class="h2">Featured Movies</h2>
+        <div class="container">
+            
+            <div class="movie">
+                <img src="movies/ghostrider.jpeg" width="50%" alt="Movie 9">
+                <h3>GHOST RIDER</h3>
+            </div>
+            <div class="movie">
+                <img src="movies/avtar.jpg" width="50%" alt="Movie 2">
+                <h3>AVATAR</h3>
+            </div>
+            <div class="movie">
+                <img src="movies/meg2.jpg" width="50%" alt="Movie 3">
+                <h3>MEG 2</h3>
+            </div>
+            <div class="movie">
+                <img src="movies/gi joe.jpg" width="50%" alt="Movie 4">
+                <h3>G.I JOE</h3>
+            </div>
+            <div class="movie">
+                <img src="movies/titanic.jpeg" width="50%" alt="Movie 5">
+                <h3>TITANIC</h3>
+            </div>
+            <div class="movie">
+                <img src="movies/kick.jpeg" width="50%" alt="Movie 6">
+                <h3>KICK</h3>
+            </div>
+            <div class="movie">
+                <img src="movies/god x kong.jpeg" width="50%" alt="Movie 7">
+                <h3>GODZILLA X KONG: THE NEW EMPIRE</h3>
+            </div>
+            <div class="movie">
+                <img src="movies/ghostbusters.jpeg" width="50%" alt="Movie 8">
+                <h3>GHOSTBUSTERS: FROZEN EMPIRE</h3>
+            </div>
+            <div class="movie">
+                <img src="movies/Capture.PNG"  width="50%" alt="Movie 1">
+                <h3>CHANDNI CHOWK TO CHINA</h3>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 LetFlex. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // JavaScript for changing color of banner content automatically
+        const bannerContent = document.getElementById('bannerContent');
+        let hue = 200; // Initial hue value set to blueish range
+        
+        setInterval(function() {
+            hue = (hue + 1) % 360; // Increment hue value
+            bannerContent.style.color = `hsl(${hue}, 100%, 50%)`; // Update text color using HSL color format
+        }, 10); // Change color every 10 milliseconds
+    </script>
+    
+</body>
+
+</html>

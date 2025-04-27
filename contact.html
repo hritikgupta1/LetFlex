@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - LetFlex</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="javascript.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    
+    <section id="contact">
+        <div id="header-container"></div>
+        <div class="container">
+            <h2>Contact LetFlex</h2>
+            <p>Email: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info.letflex@gmail.com" target="_blank" >info.letflex@gmail.com</a></p>
+            <p>Phone: 9868080754</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <div class="footer_img">
+                        <div class="logo">
+                            <h1>LetFlex</h1>
+                        </div>
+                    </div>
+                    <p>Welcome to LetFlex, your ultimate destination for all things movies! At LetFlex, we're not just another streaming service; we're your cinema concierge, your movie maestro, and your popcorn-popping pal all rolled into one.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> New Delhi, ND 110041, IN</li>
+                        <li><i class="fas fa-envelope"></i> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info.letflex@gmail.com" target="_blank">info.letflex@gmail.com</a></li>
+                        <li><i class="fas fa-phone"></i> +91 9868 080754</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LetFlex. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        
+    </footer>
+    <!-- for adding another html page -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Function to load the header when the page width is less than 816px
+            function loadHeader() {
+                const width = window.innerWidth;
+                const headerContainer = document.getElementById("header-container");
+
+                // Check if the page width is less than 818px
+                if (width < 818) {
+                    fetch("mob_menu.html")
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.text();
+                        })
+                        .then(data => {
+                            headerContainer.innerHTML = data;
+                            // After loading the header, attach the event listener
+                            attachMenuToggle();
+                        })
+                        .catch(error => console.error('Error loading header:', error));
+
+                    // Debounced resize event to minimize excessive calls and for opening keboard in mobile for search bar
+                    let resizeTimeout;
+                    window.addEventListener('resize', () => {
+                        clearTimeout(resizeTimeout);
+                        resizeTimeout = setTimeout(loadHeader, 300000); // 300 sec to open keyboard in mobile
+                    });
+                } else {
+                    fetch("pc_menu.html")
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.text();
+                        })
+                        .then(data => {
+                            headerContainer.innerHTML = data;
+                        })
+                        .catch(error => console.error('Error loading header:', error));
+
+                    window.onresize = loadHeader;
+                }
+            }
+            // Load the header on page load
+            window.onload = loadHeader;
+
+            // Load the header when the window is resized
+
+            // Function to attach the menu toggle event listener
+            function attachMenuToggle() {
+                const menuToggle = document.querySelector('.menu-toggle');
+                if (menuToggle) {
+                    menuToggle.addEventListener('click', function () {
+                        document.querySelector('.dropdown-menu').classList.toggle('active');
+                    });
+                }
+            }
+
+
+            // Search input functionality
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keydown', handleEnter);
+                searchInput.addEventListener('click', focusSearchInput); // Open keyboard on input click
+            }
+        });
+
+        // Function for searching movies
+        function searchMovies() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const movies = document.querySelectorAll('.movie');
+
+            movies.forEach(movie => {
+                const title = movie.getAttribute('data-title');
+                movie.style.display = title && title.toLowerCase().includes(searchInput) ? 'block' : 'none';
+            });
+        }
+
+        // Trigger search on Enter key press
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                searchMovies(); // Perform the search action
+                event.target.blur(); // Close the keyboard by removing focus
+            }
+        }
+
+        function focusSearchInput() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.focus(); // Open the keyboard when input is focused
+        }
+    </script>
+</body>
+
+</html>
